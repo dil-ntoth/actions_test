@@ -1,0 +1,22 @@
+name: 'Protect integration branch'
+
+on:
+  workflow_dispatch:
+    inputs:
+      branchName:
+        description: 'Branch name'
+        required: true
+        default: 'integration'
+        type: choice
+        options:
+        - integration
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Branch name: $BRANCH_NAME"
+        env:
+          BRANCH_NAME: ${{ inputs.branchName }}
+          
