@@ -10,13 +10,22 @@ on:
         type: choice
         options:
         - integration
+      actionName:
+        type: choice
+        description: 'Lock or Unlock the branch'
+        required: true
+        default: 'lock'
+        options:
+          - 'lock'
+          - 'unlock'
 
 jobs:
-  log-the-inputs:
+  lock-the-branch:
     runs-on: ubuntu-latest
     steps:
       - run: |
           echo "Branch name: $BRANCH_NAME"
+          curl "https://dummyjson.com/products/1?b=$BRANCH_NAME"
         env:
           BRANCH_NAME: ${{ inputs.branchName }}
           
