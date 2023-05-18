@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          echo "Branch: ${{ github.event.inputs.branchName }}"
           echo "Branch name: $BRANCH_NAME"
           curl "https://dummyjson.com/products/1?b=$BRANCH_NAME"
         env:
