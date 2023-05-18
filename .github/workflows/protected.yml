@@ -1,2 +1,2 @@
 name: Protect integration branch
-  on: workflow_call
+  on: workflow_dispatch
