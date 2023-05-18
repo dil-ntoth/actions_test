@@ -1,0 +1,51 @@
+{
+  "type": "module",
+  "name": "actions_test",
+  "version": "1.0.0",
+  "description": "GH actions test",
+  "main": "lock.js",
+  "dependencies": {
+    "aggregate-error": "^3.1.0",
+    "before-after-hook": "^2.2.3",
+    "bottleneck": "^2.19.5",
+    "btoa-lite": "^1.0.0",
+    "buffer-equal-constant-time": "^1.0.1",
+    "clean-stack": "^2.2.0",
+    "deprecation": "^2.3.1",
+    "ecdsa-sig-formatter": "^1.0.11",
+    "fromentries": "^1.3.2",
+    "indent-string": "^4.0.0",
+    "is-plain-object": "^5.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "jwa": "^1.4.1",
+    "jws": "^3.2.2",
+    "lodash": "^4.17.21",
+    "lru-cache": "^9.1.1",
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.11",
+    "octokit": "^2.0.14",
+    "once": "^1.4.0",
+    "safe-buffer": "^5.2.1",
+    "semver": "^7.5.1",
+    "tr46": "^0.0.3",
+    "universal-github-app-jwt": "^1.1.1",
+    "universal-user-agent": "^6.0.0",
+    "webidl-conversions": "^3.0.1",
+    "whatwg-url": "^5.0.0",
+    "wrappy": "^1.0.2",
+    "yallist": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dil-ntoth/actions_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dil-ntoth/actions_test/issues"
+  },
+  "homepage": "https://github.com/dil-ntoth/actions_test#readme"
+}
