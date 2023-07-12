@@ -37,7 +37,7 @@ jobs:
       #     ACTION_NAME: ${{ inputs.actionName }}
       - name: 'lock'
         run: |
-          chmod +x .github/scripts/lock.sh
+          chmod +x ./.github/scripts/lock.sh
           ./.github/scripts/lock.sh
         shell: bash
         # run: |
@@ -67,5 +67,3 @@ jobs:
       #     BRANCH_NAME: ${{ inputs.branchName }}
       #     ACTION_NAME: ${{ inputs.actionName }}
 
-
-# -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
