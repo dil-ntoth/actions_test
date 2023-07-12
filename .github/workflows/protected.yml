@@ -27,17 +27,16 @@ jobs:
       #   run: |
       #     echo "Branch name: $BRANCH_NAME"
       #     echo "Action name: $ACTION_NAME"
+          #       echo "Initiator: $GITHUB_ACTOR"
+          # echo "Branch orig name: $GITHUB_REF_NAME"
+          # echo "Branch variable : $BRANCH_NAME"
+          # echo "Action variable : $ACTION_NAME"
       #     curl "https://dummyjson.com/products/1?b=$BRANCH_NAME"
       #   env:
       #     BRANCH_NAME: ${{ inputs.branchName }}
       #     ACTION_NAME: ${{ inputs.actionName }}
       - name: 'lock'
         run: |
-          echo "Initiator: $GITHUB_ACTOR"
-          echo "Branch orig name: $GITHUB_REF_NAME"
-          echo "Branch variable : $BRANCH_NAME"
-          echo "Action variable : $ACTION_NAME"
-
           curl -L \
           -X PUT \
           -H "Accept: application/vnd.github+json" \
