@@ -36,8 +36,8 @@ jobs:
       #     BRANCH_NAME: ${{ inputs.branchName }}
       #     ACTION_NAME: ${{ inputs.actionName }}
       - name: 'lock'
-        run: |
-          lock.sh
+        run: ./.github/scripts/lock.sh
+        shell: bash
         # run: |
         #   echo "Initiator: $GITHUB_ACTOR"
         #   echo "Branch orig name: $GITHUB_REF_NAME"
