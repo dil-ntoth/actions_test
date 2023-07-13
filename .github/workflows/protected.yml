@@ -19,28 +19,30 @@ jobs:
       - name: 'Lock branch'
         if: ${{ env.ACTION_NAME == 'lock' }}
         run: |
-          echo "${{ toJson(github.event.inputs) }}"
-          echo "token: $SECRET_PAT"
-          echo "variable from shell environment : $env_var"
-
           CODE=`curl -L \
-              --request PUT \
-              --header 'authorization: Bearer $SECRET_PAT' \
-              --header 'content-type: application/vnd.github+json' \
-              --header 'X-GitHub-Api-Version: 2022-11-28' \
-              --url 'https://api.github.com/repos/dil-ntoth/actions_test/branches/main/protection' \
-              --data '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'`
+            --request PUT \
+            --header 'authorization: Bearer $SECRET_PAT' \
+            --header 'content-type: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            --url 'https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection' \
+            --data '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'`
 
-          echo $CODE
+          if [ $CODE!="200" ]
+          then
+            echo $CODE
+            exit 1
+          else
+            echo $CODE
+            echo "SUCCESS"
+          fi
         env:
           ACTION_NAME: ${{ inputs.actionName }}
           SECRET_PAT: ${{ secrets.PAT }}
-          env_var: ${{ vars.MYPAT }}
 
       - name: 'Unlock branch'
         if: ${{ env.ACTION_NAME == 'unlock' }}
         run: |
-          curl -L -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection
+          curl -L -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $SECRET_PAT" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection
         shell: bash
         env:
           ACTION_NAME: ${{ inputs.actionName }}
@@ -50,11 +52,4 @@ jobs:
 # curl -L -X PUT -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" -d '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}' https://api.github.com/repos/dil-ntoth/actions_test/branches/main/protection
 # if [ "$ACTION_NAME" == "unlock" ]; then curl -L -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection ; fi
 
-# if [ $CODE!="200" ]
-#               then
-#                 echo $CODE
-#                 exit 1
-#               else
-#                 echo $CODE
-#                 echo "SUCCESS"
-#               fi
+
