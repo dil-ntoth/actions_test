@@ -1,4 +1,4 @@
-name: 'Protect integration branch'
+name: 'Update branch protection'
 
 on:
   workflow_dispatch:
@@ -19,7 +19,9 @@ jobs:
       - name: 'Lock branch'
         if: ${{ env.ACTION_NAME == 'lock' }}
         run: |
-          CODE=`curl -L \
+          CODE=`curl -L --write-out '%{http_code}' \
+            --silent \
+            --output /dev/null \
             --request PUT \
             --header "authorization: Bearer $SECRET_PAT" \
             --header "content-type: application/vnd.github+json" \
