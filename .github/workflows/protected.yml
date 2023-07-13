@@ -30,7 +30,7 @@ jobs:
             --data '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'`
 
           echo $CODE
-          if [ $CODE!="200" ]
+          if [ $CODE!=200 ]
           then
             exit 1
           else
