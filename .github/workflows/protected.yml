@@ -25,15 +25,17 @@ jobs:
       #   run:
       - name: 'Lock / unlock branch'
         run: |
-          CODE=`curl -L --write-out '%{http_code}' \
-              --silent \
-              --output /dev/null \
+          echo "${{ toJson(github.event.inputs) }}"
+
+          CODE=`curl -L \
               --request PUT \
               --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
               --header 'content-type: application/vnd.github+json' \
               --header 'X-GitHub-Api-Version: 2022-11-28' \
               --url 'https://api.github.com/repos/dil-ntoth/actions_test/branches/main/protection' \
               --data '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'`
+
+          echo $CODE
 
           if [ $CODE!="200" ]
           then
