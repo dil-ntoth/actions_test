@@ -20,6 +20,7 @@ jobs:
         if: ${{ env.ACTION_NAME == 'lock' }}
         run: |
           echo "${{ toJson(github.event.inputs) }}"
+          echo "token: $SECRET_PAT"
 
           CODE=`curl -L \
               --request PUT \
