@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "${{ toJson(github.event.inputs) }}"
           echo "token: $SECRET_PAT"
+          echo "variable from shell environment : $env_var"
 
           CODE=`curl -L \
               --request PUT \
@@ -34,6 +35,8 @@ jobs:
         env:
           ACTION_NAME: ${{ inputs.actionName }}
           SECRET_PAT: ${{ secrets.PAT }}
+          env_var: ${{ vars.MYPAT }}
+
       - name: 'Unlock branch'
         if: ${{ env.ACTION_NAME == 'unlock' }}
         run: |
