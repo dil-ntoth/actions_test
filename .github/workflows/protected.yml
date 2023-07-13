@@ -46,14 +46,14 @@ jobs:
       - name: 'Lock / unlock branch'
         run: |
           echo "Initiator: $GITHUB_ACTOR"
-          $ACTION_NAME == 'lock' && curl -L \
+          $ACTION_NAME == "lock" && curl -L \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
           -H "X-GitHub-Api-Version: 2022-11-28" \
           -d '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'\
           -X PUT \
           https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection
-          $ACTION_NAME == 'unlock' && curl -L \
+          $ACTION_NAME == "unlock" && curl -L \
           -X DELETE \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer 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"\
