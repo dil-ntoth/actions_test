@@ -19,6 +19,7 @@ jobs:
       - name: 'Lock branch'
         if: ${{ env.ACTION_NAME == 'lock' }}
         run: |
+          echo "User: $GITHUB_ACTOR"
           CODE=`curl -L --write-out '%{http_code}' \
             --silent \
             --output /dev/null \
@@ -43,6 +44,7 @@ jobs:
       - name: 'Unlock branch'
         if: ${{ env.ACTION_NAME == 'unlock' }}
         run: |
+          echo "User: $GITHUB_ACTOR"
           CODE=`curl -L -X DELETE -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $SECRET_PAT" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/dil-ntoth/actions_test/branches/$GITHUB_REF_NAME/protection`
           if [ ! $CODE -eq 200 ]
           then
