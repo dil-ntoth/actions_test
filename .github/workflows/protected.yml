@@ -30,7 +30,13 @@ jobs:
               --url 'https://api.github.com/repos/dil-ntoth/actions_test/branches/main/protection' \
               --data '{"lock_branch":true, "enforce_admins":true,"required_pull_request_reviews":null,"required_status_checks":null,"restrictions": null}'`
 
-          echo $CODE
+              if [ $CODE!="200" ]
+              then
+                echo $CODE
+                exit 1
+              else
+                echo "SUCCESS"
+              fi
         env:
           ACTION_NAME: ${{ inputs.actionName }}
           SECRET_PAT: ${{ secrets.PAT }}
