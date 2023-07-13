@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: 'Lock / unlock branch'
         run: |
-          echo "Initiator: $GITHUB_ACTOR" \
           if [ "$ACTION_NAME" == "lock" ]; then curl -L \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
