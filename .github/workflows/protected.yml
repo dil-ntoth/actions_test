@@ -35,6 +35,7 @@ jobs:
                 echo $CODE
                 exit 1
               else
+                echo $CODE
                 echo "SUCCESS"
               fi
         env:
